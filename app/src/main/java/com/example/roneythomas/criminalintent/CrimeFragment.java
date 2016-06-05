@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ public class CrimeFragment extends Fragment {
     private EditText mTitleField;
     private Button mDateButton;
     private CheckBox mSolvedCheckBox;
+    private int mChanged = 0;
 
     public static CrimeFragment newInstance(UUID crimeId) {
         Bundle args = new Bundle();
@@ -59,7 +61,7 @@ public class CrimeFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                setState();
             }
         });
         mDateButton = (Button) v.findViewById(R.id.crime_date);
@@ -73,5 +75,13 @@ public class CrimeFragment extends Fragment {
             }
         });
         return v;
+    }
+
+    private void setState() {
+        mChanged++;
+        if (mChanged==1){
+            CrimeLab crimeLab = CrimeLab.get(getActivity());
+            crimeLab.setChanged(crimeLab.getCrimes().indexOf(mCrime));
+        }
     }
 }

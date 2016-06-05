@@ -13,6 +13,19 @@ import java.util.UUID;
 public class CrimeLab {
     private static CrimeLab sCrimeLab;
     private List<Crime> mCrimes;
+    private static List<Integer> mChanged;
+
+    public List<Integer> getChanged() {
+        return mChanged;
+    }
+
+    public void removeChanged(){
+        mChanged.removeAll(mChanged);
+    }
+
+    public void setChanged(int changed) {
+        mChanged.add(changed);
+    }
 
     public static CrimeLab get(Context context) {
         if (sCrimeLab == null) {
@@ -23,6 +36,7 @@ public class CrimeLab {
 
     private CrimeLab(Context context) {
         mCrimes = new ArrayList<>();
+        mChanged = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
             Crime crime = new Crime();
             crime.setTitle("Crime #" + i);

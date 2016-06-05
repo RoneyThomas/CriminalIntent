@@ -41,11 +41,17 @@ public class CrimeListFragment extends Fragment {
     private void updateUI() {
         CrimeLab crimeLab = CrimeLab.get(getActivity());
         List<Crime> crimes = crimeLab.getCrimes();
-        if (mAdapter==null){
+        if (mAdapter == null) {
             mAdapter = new CrimeAdapter(crimes);
             mCrimeRecyclerView.setAdapter(mAdapter);
         } else {
-            mAdapter.notifyDataSetChanged();
+            //mAdapter.notifyDataSetChanged();
+            Log.d("in the else ", "we are close " + crimeLab.getChanged().size());
+            for (int a = 0; a < crimeLab.getChanged().size(); a++) {
+                Log.d("in the for loop ", "we are close");
+                mAdapter.notifyItemChanged(crimeLab.getChanged().indexOf(a));
+                crimeLab.removeChanged();
+            }
         }
     }
 
