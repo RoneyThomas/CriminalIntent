@@ -47,11 +47,16 @@ public class CrimeListFragment extends Fragment {
         } else {
             //mAdapter.notifyDataSetChanged();
             Log.d("in the else ", "we are close " + crimeLab.getChanged().size());
-            for (int a = 0; a < crimeLab.getChanged().size(); a++) {
+//            for (int a = 0; a < crimeLab.getChanged().size(); a++) {
+//                Log.d("in the for loop ", "we are close");
+//                mAdapter.notifyItemChanged(crimeLab.getChanged().indexOf(a));
+//                crimeLab.removeChanged();
+//            }
+            for (int x : crimeLab.getChanged()) {
                 Log.d("in the for loop ", "we are close");
-                mAdapter.notifyItemChanged(crimeLab.getChanged().indexOf(a));
-                crimeLab.removeChanged();
+                mAdapter.notifyItemChanged(crimeLab.getChanged().indexOf(x));
             }
+            crimeLab.removeChanged();
         }
     }
 
@@ -72,7 +77,7 @@ public class CrimeListFragment extends Fragment {
 
         @Override
         public void onClick(View v) {
-            Intent intent = CrimeActivity.newIntent(getActivity(), mCrime.getId());
+            Intent intent = CrimePagerActivity.newIntent(getActivity(), mCrime.getId());
             startActivity(intent);
         }
 

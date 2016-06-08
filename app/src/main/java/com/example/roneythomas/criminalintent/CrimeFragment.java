@@ -72,6 +72,7 @@ public class CrimeFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 mCrime.setSolved(isChecked);
+                setState();
             }
         });
         return v;
@@ -79,7 +80,7 @@ public class CrimeFragment extends Fragment {
 
     private void setState() {
         mChanged++;
-        if (mChanged==1){
+        if (mChanged == 1) {
             CrimeLab crimeLab = CrimeLab.get(getActivity());
             crimeLab.setChanged(crimeLab.getCrimes().indexOf(mCrime));
         }
