@@ -29,7 +29,15 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        tools:text="FRI APR 24 12:12:10 EST 2016"/>
+        tools:text="2016 JUN 15"/>
+
+    <Button
+        android:id="@+id/crime_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        tools:text="23:45"/>
 
     <CheckBox
         android:id="@+id/crime_solved"
