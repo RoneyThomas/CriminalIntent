@@ -29,6 +29,12 @@ public class DatePickerFragment extends DialogFragment {
 
     private DatePicker mDatePicker;
 
+    private int hour;
+
+    private int minute;
+
+    private int second;
+
     public static DatePickerFragment newInstance(Date date) {
         Bundle args = new Bundle();
         args.putSerializable(ARG_DATE, date);
@@ -48,6 +54,9 @@ public class DatePickerFragment extends DialogFragment {
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
+        hour = calendar.get(Calendar.HOUR_OF_DAY);
+        minute = calendar.get(Calendar.MINUTE);
+        second = calendar.get(Calendar.SECOND);
 
         View v = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_date, null);
 
@@ -62,7 +71,7 @@ public class DatePickerFragment extends DialogFragment {
                         int year = mDatePicker.getYear();
                         int month = mDatePicker.getMonth();
                         int day = mDatePicker.getDayOfMonth();
-                        Date date = new GregorianCalendar(year, month, day).getTime();
+                        Date date = new GregorianCalendar(year, month, day, hour, minute, second).getTime();
                         sendResult(Activity.RESULT_OK, date);
                     }
                 })
